@@ -1,0 +1,85 @@
+{
+    "name": "Markdown to PDF Converter",
+    "description": "This plugin converts Markdown text to PDF documents.",
+    "logo_url": "https://yourdomain.com/logo.png",
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Markdown to PDF API",
+        "version": "1.0.0",
+        "description": "API for converting Markdown text to a PDF document."
+    },
+    "security": [
+        {
+            "ApiKeyAuth": []
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "access_token"
+            }
+        }
+    },
+    "paths": {
+        "/convert": {
+            "post": {
+                "summary": "Convert Markdown to PDF",
+                "description": "This endpoint converts Markdown text to a PDF file. It requires an API key for authentication.",
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Markdown content to convert.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "markdown_content": {
+                                        "type": "string",
+                                        "description": "The Markdown text to be converted to PDF."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "PDF conversion successful. Returns a URL to download the PDF.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Success message."
+                                        },
+                                        "download_url": {
+                                            "type": "string",
+                                            "format": "uri",
+                                            "description": "The URL to download the generated PDF file."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Access forbidden due to invalid API key."
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                
+                }
+            }
+        }
+    }
+}
