@@ -8,6 +8,12 @@
         "version": "1.0.0",
         "description": "API for converting Markdown text to a PDF document."
     },
+    "servers": [
+        {
+            "url": "https://nutty-anastasia-jeremynsl.koyeb.app:8000/",
+            "description": "Main (production) server"
+        }
+    ],
     "security": [
         {
             "ApiKeyAuth": []
