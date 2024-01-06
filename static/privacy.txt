@@ -1,0 +1,35 @@
+Privacy Policy for Worksheet Wizard
+
+Last Updated: Jan 6th 2024
+
+1. Introduction
+
+Welcome to Worksheet Wizard. This privacy policy explains how we handle the data processed by our GPT-4 powered action, which converts markdown worksheets into PDFs.
+
+2. Data Collection and Use
+
+We collect and process data only as necessary to perform the conversion service. This includes the content of the markdown worksheets submitted by users.
+
+3. Data Processing
+
+The action uses GPT-4 technology to interpret the markdown content and convert it into a PDF format. No additional personal data is collected or used during this process.
+
+4. Data Storage and Security
+
+The PDF files generated are not stored permanently. They are automatically deleted from our system after 5 minutes. We employ robust security measures to protect data during its short lifespan on our servers.
+
+5. User Consent
+
+By using our service, users consent to the data practices described in this policy. Users are responsible for any personal data or sensitive information included in the markdown worksheets they submit.
+
+6. Data Access and Portability
+
+Since the PDF files are automatically deleted after 5 minutes, there is no provision for user access or data portability for the generated files.
+
+7. Changes to This Policy
+
+We may update this privacy policy from time to time. Users are encouraged to review this policy periodically.
+
+8. Contact Information
+
+For any questions or concerns about this privacy policy, please contact us at jeremy.jj at gmail dot com
