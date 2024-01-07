@@ -9,7 +9,14 @@ import os
 import time
 from dotenv import load_dotenv
 from starlette.responses import FileResponse
+import logging
 
+logging.basicConfig(
+    filename="app.log",
+    filemode="a",
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    level=logging.INFO,
+)
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 API_KEY_NAME = "access_token"
@@ -47,7 +54,10 @@ async def convert_markdown_to_pdf(
 
         # Convert Markdown to HTML and save as PDF
         html_content = markdown.markdown(data.markdown_content)
-        HTML(string=html_content).write_pdf(output_filepath)
+        try:
+            HTML(string=html_content).write_pdf(output_filepath)
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
 
         # Provide a URL for downloading the file
         download_url = (
@@ -68,7 +78,7 @@ def delete_file_after_delay(file_path, delay=300):
         if os.path.exists(file_path):
             os.remove(file_path)
     except Exception:
-        pass  # Handle errors
+        logging.error(f"Failed to delete file: {file_path}")
 
 
 app.mount(f"/{TEMP_DIR}", StaticFiles(directory=TEMP_DIR), name="temp_files")
