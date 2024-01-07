@@ -8,6 +8,7 @@ import uuid
 import os
 import time
 from dotenv import load_dotenv
+from starlette.responses import FileResponse
 
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
@@ -49,7 +50,9 @@ async def convert_markdown_to_pdf(
         HTML(string=html_content).write_pdf(output_filepath)
 
         # Provide a URL for downloading the file
-        download_url = f"https://nutty-anastasia-jeremynsl.koyeb.app/{TEMP_DIR}/{unique_filename}"
+        download_url = (
+            f"https://nutty-anastasia-jeremynsl.koyeb.app/{TEMP_DIR}/{unique_filename}"
+        )
 
         # Schedule file deletion
         background_tasks.add_task(delete_file_after_delay, output_filepath)
@@ -69,3 +72,9 @@ def delete_file_after_delay(file_path, delay=300):
 
 
 app.mount(f"/{TEMP_DIR}", StaticFiles(directory=TEMP_DIR), name="temp_files")
+
+
+# app.mount("/static", StaticFiles(directory="static"), name="static")
+@app.get("/static/privacy.txt")
+async def read_privacy():
+    return FileResponse("static/privacy.txt")
